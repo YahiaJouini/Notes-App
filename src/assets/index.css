@@ -29,6 +29,7 @@
   margin: 0 auto;
   padding: 30px;
 }
+
 .search-clear {
     display: flex;
     flex-direction: column;
@@ -87,6 +88,44 @@ button:disabled{
   grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
   width: 90%;
   margin: 0 auto;
+}
+.title {
+  filter: drop-shadow(4px 4px 3px rgba(0,0,0,0.1));
+}
+.title span {
+  color: #5dd1c4;
+  
+}
+@media (max-width : 500px) {
+  .note {
+    width: 270px;
+  }
+  .container {
+    width: 100%;
+  }
+  .title-toggle { 
+    width: 100%;
+    flex-wrap: wrap ;
+  }
+  .title-toggle button {
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+  .title-toggle h1{
+    font-size: 26px;
+  }
+  .search-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .notes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 }
 .note {
   margin-bottom: 10px;

@@ -9,7 +9,7 @@ export default function Note({color,HandleDelete, text , id , date }) {
             <span>{text}</span>
             <div className="note-footer">
                 <small>{date}</small>
-                <MdDelete onClick={()=>HandleClick()} className="delete-icon" size="1.5rem"/>
+                <MdDelete onClick={()=>HandleClick()} size="1.5rem"/>
             </div>
         </div>
     )

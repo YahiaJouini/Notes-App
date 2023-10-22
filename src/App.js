@@ -6,10 +6,11 @@ import Search  from "./components/Search";
 export default function App() {
   
   // State Hooks
-  const initial=JSON.parse(window.localStorage.getItem('load-data'));
-  const [notes,setNotes] = useState(initial || []);
+  const initial_data=JSON.parse(window.localStorage.getItem('load-data'));
+  const initial_darkMode_data=JSON.parse(window.localStorage.getItem('darkMode-data'));
+  const [notes,setNotes] = useState(initial_data || []);
   const [searchText,setSearchText] = useState('');
-  const [darkMode,setdarkMode] = useState(false);
+  const [darkMode,setdarkMode] = useState(initial_darkMode_data || false);
   const colors = ["#fcf2b2","#d0eaec","#fedadb","#fed4a8"];
 
 
@@ -21,6 +22,10 @@ export default function App() {
   useEffect(()=>{
     localStorage.setItem("load-data",JSON.stringify(notes));
   },[notes]);
+
+  useEffect(()=>{
+    localStorage.setItem("darkMode-data",JSON.stringify(darkMode));
+  },[darkMode]);
 
   // Saving Notes
   function HandleSave(text) {
@@ -56,7 +61,7 @@ export default function App() {
   return (
     <div className={`container ${darkMode? 'dark-mode' : 'light-mode'} `}>
       <div className="search-clear">
-      <Search HandleSearch={setSearchText} HandleToggle={setdarkMode} />
+      <Search darkMode={darkMode} HandleSearch={setSearchText} HandleToggle={setdarkMode} />
       <button onClick={HandleClearAll}>Clear All</button>
       </div>
       <NotesList
