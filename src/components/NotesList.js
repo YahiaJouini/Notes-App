@@ -6,7 +6,13 @@ export default function NotesList ({searchText,HandleDelete, notes , HandleSave 
         <div className="notes-container">
             <AddNewNote searchText={searchText} HandleSave={HandleSave} />
             {
-                notes.map(note=> <Note key={nanoid()} HandleDelete={HandleDelete} text={note.text} id = {note.id} date = {note.date} />)
+                notes.map(note=> <Note key={nanoid()} 
+                                    HandleDelete={HandleDelete} 
+                                    text={note.text} 
+                                    id = {note.id} 
+                                    date = {note.date} 
+                                    color={note.color}
+                                    />)
             }
         </div>
     )

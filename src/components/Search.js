@@ -10,7 +10,6 @@ export default function Search ({  HandleToggle , HandleSearch }) {
             <MdSearch size="1.6rem" />
             <input onChange={(e)=>{HandleSearch(e.target.value)}} type='text' placeholder="Type to search for note..." />
             </div>
-        
       </div>
-    )
+    );
 }
