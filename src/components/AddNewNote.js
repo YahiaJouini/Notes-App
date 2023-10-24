@@ -20,7 +20,7 @@ export default function AddNewNote({searchText,HandleSave}) {
             <textarea placeholder="Add New Note..." value={newNote} onChange={HandleChange}></textarea>
             <div className="note-footer">
                 <small>{characterLimit-newNote.length} Remaining</small>
-                <button onClick={Update} disabled={newNote==="" || searchText!=="" }>Save</button>
+                <button className="save" onClick={Update} disabled={newNote==="" || searchText!=="" }>Save</button>
             </div>
         </div>
     )

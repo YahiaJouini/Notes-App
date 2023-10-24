@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {nanoid} from "nanoid";
 import NotesList from "./components/NotesList";
 import Search  from "./components/Search";
+import BackToTop from "./components/BackToTop";
 
 export default function App() {
   
@@ -11,9 +12,11 @@ export default function App() {
   const [notes,setNotes] = useState(initial_data || []);
   const [searchText,setSearchText] = useState('');
   const [darkMode,setdarkMode] = useState(initial_darkMode_data || false);
-  const colors = ["#fcf2b2","#d0eaec","#fedadb","#fed4a8"];
+  const colors = ["#fcf2b2","#d0eaec","#fedadb","#fed4a8","#bdcdbb","#cdb1c6","#e8b3c5","#f0f0ed","#c6ceff"];
+  const [scroll,setScroll] = useState(false);
 
 
+  // generating random number to pick a background color for the note
   function random(){
     return Math.floor(Math.random()*colors.length)
   }
@@ -27,16 +30,28 @@ export default function App() {
     localStorage.setItem("darkMode-data",JSON.stringify(darkMode));
   },[darkMode]);
 
+
+  // cheking the scroll to top button
+
+  useEffect(()=>{
+    window.addEventListener("scroll",()=>{
+      if(window.scrollY>100){
+        setScroll(true);
+      }else {
+        setScroll(false);
+      }
+    })
+
+  },[])
+
   // Saving Notes
   function HandleSave(text) {
 
-    //getting the current Date
-    const date = new Date();
+    const date = new Date();//getting the current Date
     const currentDate = date.toLocaleString('en-GB', { dateStyle: 'short', timeStyle: 'short'});
 
-
-    const newNoteList = [...notes,{id:nanoid(),text:text,date:currentDate,color:colors[random()]}];
-    setNotes(newNoteList.reverse());
+    const newNoteList = [{id:nanoid(),text:text,date:currentDate,color:colors[random()]},...notes];
+    setNotes(newNoteList);
   }
 
 
@@ -53,9 +68,11 @@ export default function App() {
       if(window.confirm("Are You Sure ?")){
         setNotes([]);
       }
-    }else {
-      alert("There are no notes to clear !");
     }
+  };
+
+  function backtotop(){
+    window.scrollTo(0,0)
   }
 
   return (
@@ -70,6 +87,8 @@ export default function App() {
                 notes={notes.filter(note => note.text.toLowerCase().includes(searchText.toLocaleLowerCase()))}
                 searchText={searchText}
                 />
-    </div>
-  );
+      <div className="scroll-div">{scroll && <BackToTop handleScroll={backtotop} />}</div>
+      
+
+    </div>  );
 }

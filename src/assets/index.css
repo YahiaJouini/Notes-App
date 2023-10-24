@@ -3,6 +3,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+.container{
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 30px;
+  position: relative;
 }
 .dark-mode {
   background-color: #1e1e1f;
@@ -23,13 +31,6 @@
   transition: all .5s ease;
 }
 
-.container{
-  font-family: 'Roboto', sans-serif;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 30px;
-}
-
 .search-clear {
     display: flex;
     flex-direction: column;
@@ -41,7 +42,7 @@
   justify-content: space-between;
   align-items: center;
 }
-button {
+button:not(.back-to-top-btn) {
   background-color: #d1d1d1;
   border:none;
   border-radius: 10px;
@@ -55,6 +56,32 @@ button:hover:not(:disabled) {
 }
 button:disabled{
   cursor: not-allowed;
+}
+.scroll-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+.back-to-top-btn {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  background-color: #d1d1d1;
+  border: none;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 5px 15px 8px;
+  gap: 3px;
+  border-radius: 8px;
+  box-shadow: 1px 4px 4px rgba(0,0,0,0.25);
+}
+@media (max-width : 500px){
+  .back-to-top-btn {
+    padding: 3px 12px 5px;
+  }
+}
+.save {
+  font-size: 16px;
 }
 .search-section button {
   font-size: 16px;
@@ -79,7 +106,7 @@ button:disabled{
   outline: none;
   font-size: 18px;
   background: none;
-  margin-left: 20px;
+  margin-left: 15px;
   height: 100%;
 }
 .notes-container {
@@ -120,11 +147,18 @@ button:disabled{
     flex-direction: column;
     align-items: center;
   }
+  .search-section input {
+    font-size: 17px;
+    margin-left: 10px;
+  }
   .notes-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+  }
+  .save {
+    font-size: 15px;
   }
 }
 .note {
@@ -165,7 +199,7 @@ button:disabled{
 }
 .new textarea {
   background:none;
-  font-size: 16px;
+  font-size: 18px;
   border: none;
   outline: none;
   font-weight: bold;
